@@ -20,7 +20,13 @@ class SubtitleProcessor {
 	def dropNonAspell40Words() {
 		def dictFile = this.getClass().getResource( '/aspell_40_lower.txt' )
 		def bigDict = new File(dictFile.path) as String[]
-		tokens = tokens.findAll { bigDict.contains(it) }
+		tokens = tokens.findAll { word ->
+			boolean found = bigDict.contains(word)
+			if(!found) {
+				//println "Dropping $word"
+			}
+			return found
+		}
 	}
 
 	def listUnkownWords() {
@@ -31,7 +37,7 @@ class SubtitleProcessor {
 			def possibleRoots = possibleRootWordsFor(word)	// try to find root word if it is formed with -(e)s, -(e)d, -ly, -(e)r, -ing, -able
 			possibleRoots.each { root ->
 				if(myVocab.contains(root)) {
-					println "Ignoring $word because of $root"
+					//println "Ignoring $word because of $root"
 					found = true
 				}
 			}
