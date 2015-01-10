@@ -22,4 +22,36 @@ class SubtitleProcessor {
 		def bigDict = new File(dictFile.path) as String[]
 		tokens = tokens.findAll { bigDict.contains(it) }
 	}
+
+	def listUnkownWords() {
+		def myVocabFile = this.getClass().getResource( '/my_vocabulary.txt' )
+		def myVocab = new File(myVocabFile.path) as String[]
+		def unknownWords = tokens.findAll { word ->
+			boolean found = myVocab.contains(word)	// look up word
+			def possibleRoots = possibleRootWordsFor(word)	// try to find root word if it is formed with -(e)s, -(e)d, -ly, -(e)r, -ing, -able
+			possibleRoots.each { root ->
+				if(myVocab.contains(root)) {
+					println "Ignoring $word because of $root"
+					found = true
+				}
+			}
+			return !found 
+		}
+		return unknownWords
+	}
+
+	def possibleRootWordsFor(word) {
+		def possibleRoots = []
+		def endings = 'ed d ing er est ly less ness ation s es ment'.split(' ')
+		endings.each { end ->
+			if(word.length() > end.length() + 2) {
+				if(word.endsWith(end)) {
+					def root = word.substring(0, word.length() - (end.length()))
+					//println "Adding $root instead of $word"
+					possibleRoots.add(root)
+				}
+			}
+		}
+		return possibleRoots
+	}
 }

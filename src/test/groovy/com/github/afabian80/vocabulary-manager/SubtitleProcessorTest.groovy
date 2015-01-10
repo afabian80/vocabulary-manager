@@ -66,4 +66,13 @@ class SubtitleProcessorTest extends GroovyTestCase {
 		sp.dropNonAspell40Words()
 		assert sp.tokens.size == 1368
 	}
+
+	void testListUnkownWords() {
+		def subtitleFile = this.getClass().getResource( '/com/github/afabian80/vocabulary-manager/sample1.srt' )
+		sp.text = subtitleFile.text
+		sp.tokenize()
+		sp.dropNonAspell40Words()
+		def unknownWords = sp.listUnkownWords()
+		assert unknownWords.size == 367
+	}
 }
