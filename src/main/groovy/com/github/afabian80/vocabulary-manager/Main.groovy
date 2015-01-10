@@ -11,9 +11,9 @@ class Main {
 		main.run(args[0], args[1])
 	}
 
-	void run(file1, file2) {
+	void run(subtitleFile, file2) {
 		println "Called with $file1, $file2"
 		SubtitleProcessor sp = new SubtitleProcessor()
-		sp.text = new File(file1).text
+		sp.text = new File(subtitleFile).text
 	}
 }

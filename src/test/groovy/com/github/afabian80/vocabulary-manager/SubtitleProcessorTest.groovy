@@ -39,4 +39,11 @@ class SubtitleProcessorTest extends GroovyTestCase {
 		sp.tokenize()
 		assert sp.tokens.size == 14
 	}
+
+	void testLoadFile () {
+		def subtitleFile = this.getClass().getResource( '/com/github/afabian80/vocabulary-manager/sample1.srt' )
+		sp.text = subtitleFile.text
+		sp.tokenize()
+		assert sp.tokens.size == 1492
+	}
 }
