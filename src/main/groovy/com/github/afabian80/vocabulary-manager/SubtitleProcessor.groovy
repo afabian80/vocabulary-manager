@@ -9,9 +9,10 @@ class SubtitleProcessor {
 			throw new Exception('Text property not set')
 		}
 		text.eachLine { line ->
-			def parts = line.tr(',.:;-\'">', ' ').split(' ').findAll { it.length() > 0 }
+			def parts = line.tr(',.:;-\'">', ' ').split(' ').findAll { it.length() > 0 }.collect { it.toLowerCase() }
 			tokens.addAll(parts)
 		}
+		tokens.unique(true)
 		return tokens.size
 	}
 }

@@ -26,4 +26,17 @@ class SubtitleProcessorTest extends GroovyTestCase {
 		sp.tokenize()
 		assert sp.tokens.size == 14
 	}
+
+	void testUnique() {
+		sp.text = '''
+			2
+			00:00:55,889 --> 00:01:01,260
+			IAN: Every living person on this planet
+			has their own unique pair of eyes.
+			IAN: Every living person on this planet
+			has their own unique pair of eyes.
+		'''.stripIndent()
+		sp.tokenize()
+		assert sp.tokens.size == 14
+	}
 }
