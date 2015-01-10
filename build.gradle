@@ -13,4 +13,5 @@ dependencies {
 task run(type: JavaExec) {
 	classpath configurations.runtime + sourceSets.main.output
 	main = 'com.github.afabian80.vocabulary_manager.Main'
+	args = ['one', 'two']
 }
