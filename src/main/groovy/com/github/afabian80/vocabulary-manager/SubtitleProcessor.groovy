@@ -3,6 +3,7 @@ package com.github.afabian80.vocabulary_manager
 class SubtitleProcessor {
 	def text
 	def tokens = []
+	def vocabFile = ''
 
 	def tokenize() {
 		if(!text) {
@@ -30,8 +31,8 @@ class SubtitleProcessor {
 	}
 
 	def listUnkownWords() {
-		def myVocabFile = this.getClass().getResource( '/my_vocabulary.txt' )
-		def myVocab = new File(myVocabFile.path) as String[]
+		//def myVocabFile = this.getClass().getResource( '/my_vocabulary.txt' )
+		def myVocab = new File(vocabFile) as String[]
 		def unknownWords = tokens.findAll { word ->
 			boolean found = myVocab.contains(word)	// look up word
 			def possibleRoots = possibleRootWordsFor(word)	// try to find root word if it is formed with -(e)s, -(e)d, -ly, -(e)r, -ing, -able

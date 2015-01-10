@@ -69,7 +69,9 @@ class SubtitleProcessorTest extends GroovyTestCase {
 
 	void testListUnkownWords() {
 		def subtitleFile = this.getClass().getResource( '/com/github/afabian80/vocabulary-manager/sample1.srt' )
+		def vocabFile = this.getClass().getResource( '/my_vocabulary.txt' )
 		sp.text = subtitleFile.text
+		sp.vocabFile = vocabFile.path
 		sp.tokenize()
 		sp.dropNonAspell40Words()
 		def unknownWords = sp.listUnkownWords()
