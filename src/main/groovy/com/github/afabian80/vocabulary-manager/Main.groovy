@@ -7,6 +7,13 @@ class Main {
 			println "Usage: ..."
 			System.exit(1)
 		}
-		args.each { println it }
+		Main main = new Main()
+		main.run(args[0], args[1])
+	}
+
+	void run(file1, file2) {
+		println "Called with $file1, $file2"
+		SubtitleProcessor sp = new SubtitleProcessor()
+		sp.text = new File(file1).text
 	}
 }
