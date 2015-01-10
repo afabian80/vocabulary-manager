@@ -57,6 +57,13 @@ class SubtitleProcessorTest extends GroovyTestCase {
 		sp.tokenize()
 		sp.dropNonAspell40Words()
 		assert sp.tokens.size == 13	// IAN should be dropped
-		
+	}
+
+	void testLoadFileWithDropping () {
+		def subtitleFile = this.getClass().getResource( '/com/github/afabian80/vocabulary-manager/sample1.srt' )
+		sp.text = subtitleFile.text
+		sp.tokenize()
+		sp.dropNonAspell40Words()
+		assert sp.tokens.size == 1368
 	}
 }
