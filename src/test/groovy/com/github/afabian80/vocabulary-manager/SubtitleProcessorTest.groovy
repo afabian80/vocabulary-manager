@@ -46,4 +46,17 @@ class SubtitleProcessorTest extends GroovyTestCase {
 		sp.tokenize()
 		assert sp.tokens.size == 1492
 	}
+
+	void testDropPossiblyMisspelled() {
+		sp.text = '''
+			2
+			00:00:55,889 --> 00:01:01,260
+			IAN: Every living person on this planet
+			has their own unique pair of eyes.
+		'''.stripIndent()
+		sp.tokenize()
+		sp.dropNonAspell40Words()
+		assert sp.tokens.size == 13	// IAN should be dropped
+		
+	}
 }

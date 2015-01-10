@@ -16,4 +16,10 @@ class SubtitleProcessor {
 		tokens.unique(true)
 		return tokens.size
 	}
+
+	def dropNonAspell40Words() {
+		def dictFile = this.getClass().getResource( '/aspell_40_lower.txt' )
+		def bigDict = new File(dictFile.path) as String[]
+		tokens = tokens.findAll { bigDict.contains(it) }
+	}
 }
