@@ -1,9 +1,6 @@
 apply plugin: 'groovy'
-apply plugin: 'application'
 
 version = '0.1'
-
-mainClassName = 'com.github.afabian80.vocabulary_manager.Main'
 
 repositories {
 	mavenCentral()
@@ -11,4 +8,9 @@ repositories {
 
 dependencies {
 	compile 'org.codehaus.groovy:groovy-all:2.3.6'
+}
+
+task run(type: JavaExec) {
+	classpath configurations.runtime + sourceSets.main.output
+	main = 'com.github.afabian80.vocabulary_manager.Main'
 }
