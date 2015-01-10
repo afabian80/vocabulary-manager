@@ -1,0 +1,14 @@
+apply plugin: 'groovy'
+apply plugin: 'application'
+
+version = '0.1'
+
+mainClassName = 'com.github.afabian80.vocabulary_manager.Main'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile 'org.codehaus.groovy:groovy-all:2.3.6'
+}
