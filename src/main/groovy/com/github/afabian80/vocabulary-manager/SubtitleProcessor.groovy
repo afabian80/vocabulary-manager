@@ -12,6 +12,7 @@ class SubtitleProcessor {
 			def parts = line.tr(',.:;-\'">', ' ').split(' ').findAll { it.length() > 0 }.collect { it.toLowerCase() }
 			tokens.addAll(parts)
 		}
+		tokens.sort()
 		tokens.unique(true)
 		return tokens.size
 	}
