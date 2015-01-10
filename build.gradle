@@ -8,10 +8,18 @@ repositories {
 
 dependencies {
 	compile 'org.codehaus.groovy:groovy-all:2.3.6'
+	testCompile 'junit:junit:4.11'
 }
 
 task run(type: JavaExec) {
 	classpath configurations.runtime + sourceSets.main.output
 	main = 'com.github.afabian80.vocabulary_manager.Main'
 	args = ['one', 'two']
+}
+
+test {
+	testLogging {
+		showStandardStreams = true
+		exceptionFormat 'full'
+	}
 }
